@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="imgDrag.css">
+</head>
+<body>
+    <div class="container">
+        <section class="originalPlace">
+            <img src="./UP/1.jpg">
+            <img src="./UP/2.jpg">
+            <img src="./UP/3.jpg">
+            <img src="./UP/4.jpg">
+            <img src="./UP/5.jpg">
+            <img src="./UP/6.jpg">
+            <img src="./UP/7.jpg">
+            <img src="./UP/8.jpg">
+            <img src="./UP/9.jpg">
+            <img src="./UP/10.jpg">     
+        </section>
+        <section class="dragedTo">
+
+        </section>
+    </div>
+
+<script>
+    let originalPlace = document.querySelector('.originalPlace');
+    let dragedToDiv = document.querySelector('.dragedTo');
+    let allimages = document.querySelectorAll('img');
+
+    for(let img of allimages){
+        img.addEventListener("dragstart",dragstart);
+        img.addEventListener("dragend",dragend);
+    }
+
+        dragedToDiv.addEventListener('dragover',dragover);
+        dragedToDiv.addEventListener('drop',drop);
+        
+    function dragstart(e){
+            e.dataTransfer.setData("myimg", e.target.outerHTML);}
+
+    function dragend(e){
+            e.preventDefault();
+        e.target.style.display = "none";
+}
+
+    function dragover(e){
+            e.preventDefault();
+    }
+
+    function drop(e){
+        e.preventDefault();
+        e.target.innerHTML += e.dataTransfer.getData("myimg");
+    }
+
+
+
+</script>
+
+</body>
+</html>
